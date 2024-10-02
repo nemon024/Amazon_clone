@@ -73,7 +73,7 @@ export function updateQuantity(productId, newQuantity) {
 
   saveToStorage();
 
-  location.reload()
+
 }
 
 export function updateDeliveryOption(productId, deliveryOptionId) {
