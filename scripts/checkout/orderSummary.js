@@ -43,7 +43,7 @@ export function renderOrderSummary() {
                 </div>
                 <div class="product-price">$${formatCurrency(matchingProduct.priceCents)}</div>
                 <div class="product-quantity">
-                  <span> Quantity: <span class="quantity-label-${matchingProduct.id}">${cartItem.quantity}</span> </span>
+                  <span> Quantity: <span class="js-quantity-label-${matchingProduct.id}">${cartItem.quantity}</span> </span>
                   <span class="update-quantity-link link-primary js-update-link"
                   data-product-id="${matchingProduct.id}">
                     Update
@@ -119,12 +119,9 @@ export function renderOrderSummary() {
         const productId = link.dataset.productId;
         removeFromCart(productId);
 
-        const container = document.querySelector(`.js-cart-item-container-${productId}`);
-        container.remove();
-
         updateCartQuantity();
         renderOrderSummary();
-        renderPaymentSummary()
+        renderPaymentSummary();
       });;
     });
 
@@ -135,6 +132,7 @@ export function renderOrderSummary() {
         updateDeliveryOption(productId, deliveryOptionId);
         renderOrderSummary();
         renderPaymentSummary();
+
       })
     })
 
@@ -184,15 +182,19 @@ export function renderOrderSummary() {
         const container = document.querySelector(
           `.js-cart-item-container-${productId}`
         );
+
+
         container.classList.remove('is-editing-quantity');
 
         const quantityLabel = document.querySelector(
           `.js-quantity-label-${productId}`
 
         );
-        console.log(quantityLabel);
         quantityLabel.innerHTML = newQuantity;
-        updateCartQuantity();
+        updateQuantity(productId, newQuantity);
+        renderOrderSummary();
+        renderPaymentSummary();
+
       });
     });
 
