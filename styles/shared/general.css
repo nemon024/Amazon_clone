@@ -20,7 +20,9 @@ select {
   cursor: pointer;
 }
 
-input, select, button {
+input,
+select,
+button {
   font-family: Roboto, Arial;
 }
 
@@ -69,7 +71,13 @@ input, select, button {
    https://css-tricks.com/almanac/properties/l/line-clamp/ */
 .limit-text-to-2-lines {
   display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
